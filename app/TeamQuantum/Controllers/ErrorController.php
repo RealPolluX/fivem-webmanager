@@ -18,15 +18,8 @@ namespace TeamQuantum\Controllers;
 
 class ErrorController extends Controller
 {
-    /**
-     * ErrorController constructor.
-     */
-    public function __construct()
+    public function show(array $params = [])
     {
-        return $this;
-    }
-
-    public function show(array $params = []){
         return $this->view('404',
             $this->combineParamArrays([
                 'code' => 404,

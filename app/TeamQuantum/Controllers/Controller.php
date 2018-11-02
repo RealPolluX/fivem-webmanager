@@ -79,7 +79,7 @@ class Controller
             return $this->detectBaseUrl();
         });
 
-        $templateEngine->registerFunction('year', function (){
+        $templateEngine->registerFunction('year', function () {
             return date('Y');
         });
     }

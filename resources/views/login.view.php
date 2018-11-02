@@ -12,10 +12,12 @@
                 <p class="text-muted">If you have a user account you can log-in now!</p>
                 <form id="loginForm" action="index.html" class="mt-4">
                     <div class="form-group mb-4">
-                        <input type="text" name="username" placeholder="Username or Email address" class="form-control border-0 shadow form-control-lg">
+                        <input type="text" name="username" placeholder="Username or Email address"
+                               class="form-control border-0 shadow form-control-lg">
                     </div>
                     <div class="form-group mb-4">
-                        <input type="password" name="password" placeholder="Password" class="form-control border-0 shadow form-control-lg text-violet">
+                        <input type="password" name="password" placeholder="Password"
+                               class="form-control border-0 shadow form-control-lg text-violet">
                     </div>
                     <button type="submit" class="btn btn-primary shadow px-5">Log in</button>
                 </form>
