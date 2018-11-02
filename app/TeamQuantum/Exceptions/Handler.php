@@ -16,6 +16,8 @@
 namespace TeamQuantum\Exceptions;
 
 use Closure;
+use Psr\Log\LogLevel;
+use TeamQuantum\Logging\Logger;
 
 class Handler
 {
@@ -53,6 +55,7 @@ class Handler
                 return;
             }
         }
+
         $code = '
                 <html>
                         <head>
@@ -73,6 +76,10 @@ class Handler
                 </html>
                 ';
 
+        // log exception to the pages logfile
+        $logMessage = '[' . $this->exception->getCode() . '] ' . $this->exception->getMessage();
+        Logger::instance()->log(LogLevel::CRITICAL, $logMessage);
+
         echo $code;
     }
 
@@ -85,6 +92,7 @@ class Handler
         $current = sprintf($mainheadercode, $this->exception->getCode(), $this->exception->getMessage());
         $current .= $this->getCodeSnippet($this->exception->getFile(), $this->exception->getLine());
         $backtracecode .= sprintf($backtracecontainer, $current);
+
         if (count($trace)) {
             foreach ($trace as $index => $step) {
                 ($step['class']) ? $class = $step['class'] . '::' . $step['function'] : $class = $step['function'];
@@ -110,6 +118,7 @@ class Handler
                 $backtracecode .= sprintf($backtracecontainer, $stepcode);
             }
         }
+
         return $backtracecode;
     }
 
@@ -123,11 +132,12 @@ class Handler
                 $startLine = ($lineNumber > 2) ? ($lineNumber - 2) : 1;
                 $endLine = ($lineNumber < (count($phpFile) - 2)) ? ($lineNumber + 3) : count($phpFile) + 1;
                 if ($endLine > $startLine) {
-                    if ($pathPosition !== FALSE) {
+                    if ($pathPosition !== false) {
                         $codeSnippet = '<span class="file">' . substr($filePathAndName, $pathPosition) . ':</span><br /><pre>';
                     } else {
                         $codeSnippet = '<span class="file">' . $filePathAndName . ':</span><br /><pre>';
                     }
+
                     for ($line = $startLine; $line < $endLine; $line++) {
                         $codeLine = str_replace("\t", ' ', $phpFile[$line - 1]);
                         if ($line === $lineNumber) {
@@ -142,6 +152,7 @@ class Handler
                 }
             }
         }
+
         return $codeSnippet;
     }
 }
