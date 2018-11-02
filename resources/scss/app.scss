@@ -1,0 +1,15 @@
+$main-color: lightslategray;
+$second-color: aquamarine;
+
+body {
+  width: 85%;
+  max-width: 1200px;
+
+  .container {
+    background: $main-color;
+
+    &:hover{
+      background: $second-color;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "fivem-webmanager",
+  "version": "1.0.0",
+  "description": "RCON Webmanager for your FiveM server!",
+  "main": "public/index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss resources/scss/app.scss   public/css/app.css",
+    "minify-css": "uglifycss ./public/css/app.css --output ./public/css/app.min.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "author": "RealPolluX",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.9.4",
+    "nodemon": "^1.18.5",
+    "uglifycss": "0.0.29"
+  }
+}

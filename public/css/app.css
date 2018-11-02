@@ -1,0 +1,12 @@
+body {
+    width: 85%;
+    max-width: 1200px;
+}
+
+body .container {
+    background: lightslategray;
+}
+
+body .container:hover {
+    background: aquamarine;
+}
