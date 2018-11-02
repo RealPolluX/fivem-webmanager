@@ -10,25 +10,16 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 18:23 PM
+ *                            Created @ 2018-11-02 - 21:05 PM
  */
 
 namespace TeamQuantum\Controllers;
 
 
-class Test extends Controller
+class AccountController extends Controller
 {
-    public function indexAction(array $params = [])
+    public function loginAction(array $params = [])
     {
-        return 'hello';
+        return $this->view('login', $this->combineParamArrays([], $params));
     }
-
-    public function secondAction(array $params = [])
-    {
-        return $this->view('test',
-            $this->combineParamArrays(['name' => '.PolluX'], $params)
-        );
-    }
-
-
 }

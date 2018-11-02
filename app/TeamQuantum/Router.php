@@ -24,6 +24,7 @@ class Router
      */
     public static function resolve(string $uri): ?Array
     {
+
         $var = parse_url($uri);
         $path = explode('/', trim($var['path'], "/"));
 
@@ -36,7 +37,7 @@ class Router
             array_push($path, 'index');
         }
 
-        $className = 'TeamQuantum\\Controllers\\' . ucfirst($path[0]);
+        $className = 'TeamQuantum\\Controllers\\' . ucfirst($path[0] . 'Controller');
         if (!class_exists($className)) {
             return null;
         }
@@ -46,6 +47,7 @@ class Router
             return null;
         }
 
+        // remove class and method from array
         array_shift($path);
         array_shift($path);
 

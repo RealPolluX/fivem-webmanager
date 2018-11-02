@@ -30,20 +30,7 @@ class Handler
      */
     public function __construct()
     {
-        //TODO: replace with proper errorHandler
-        // set_error_handler([$this, 'handleError']);
-
         set_exception_handler([$this, 'handleException']);
-    }
-
-    public function handleError(\Error $error){
-        /* $error->getMessage();
-        $error->getCode();
-        $error->getFile();
-        $error->getLine();
-        $error->getPrevious(); */
-
-        var_dump($error->getMessage());
     }
 
     /**

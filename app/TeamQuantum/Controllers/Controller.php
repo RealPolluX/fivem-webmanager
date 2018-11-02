@@ -29,6 +29,10 @@ class Controller
     protected function view(string $view, array $params = []): string
     {
         $templateEngine = new Engine(__DIR__ . '/../../../resources/views', 'view.php');
+        $templateEngine->registerFunction('url', function () {
+            return $this->detectBaseUrl();
+        });
+
         return $templateEngine->render($view, $params);
     }
 
@@ -42,6 +46,27 @@ class Controller
     protected function combineParamArrays(array $customParams, array $uriParams = [])
     {
         return array_merge($customParams, $uriParams);
+    }
+
+    /**
+     * Autodetect base url
+     *
+     * @return mixed
+     */
+    public function detectBaseUrl()
+    {
+        if (isset($_SERVER['REQUEST_SCHEME'])) { // localhost bugfix
+            $baseUrl = $_SERVER['REQUEST_SCHEME'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            $baseUrl = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+        } else {
+            $baseUrl = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+        }
+
+        $baseUrl .= '://' . $_SERVER['HTTP_HOST'];
+        $baseUrl .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+
+        return $baseUrl;
     }
 
 }
