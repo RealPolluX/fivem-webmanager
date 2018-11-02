@@ -10,24 +10,40 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 00:42 PM
+ *                            Created @ 2018-11-02 - 18:01 PM
  */
 
-namespace TeamQuantum;
+namespace TeamQuantum\Logging;
 
-class Page
+use Katzgrau\KLogger;
+
+
+/**
+ * Class Logger
+ * - static wrapper for the real Logger class
+ *
+ * @package TeamQuantum\Logging
+ */
+class Logger
 {
-    public function execute(string $uri): string
+    public static $_instance;
+
+    public static function instance()
     {
-        $route = Router::resolve($uri);
-        if ($route === null) {
-            // TODO: 404
-            return '404';
+        return self::get();
+    }
+
+    public function __construct()
+    {
+        self::$_instance = $this;
+    }
+
+    public static function get()
+    {
+        if (self::$_instance === null) {
+            self::$_instance = new KLogger\Logger(__DIR__ . '/../../../storage/logs');
         }
 
-        $controller = new $route['controller'];
-        $method = $route['method'];
-
-        return $controller->$method($route['params']);
+        return self::$_instance;
     }
 }

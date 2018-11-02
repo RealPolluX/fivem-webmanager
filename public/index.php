@@ -27,4 +27,4 @@ new \TeamQuantum\Exceptions\Handler();
 
 // execute page
 $page = new TeamQuantum\Page();
-$page->execute();
+echo $page->execute($_SERVER['REQUEST_URI']);

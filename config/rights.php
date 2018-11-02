@@ -10,24 +10,25 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 00:42 PM
+ *                            Created @ 2018-11-02 - 03:48 PM
  */
 
-namespace TeamQuantum;
+return [
+    'supp' => [
+        "login",
+        "kick"
+    ],
 
-class Page
-{
-    public function execute(string $uri): string
-    {
-        $route = Router::resolve($uri);
-        if ($route === null) {
-            // TODO: 404
-            return '404';
-        }
+    'mod' => [
+        "login",
+        "kick",
+        "ban"
+    ],
 
-        $controller = new $route['controller'];
-        $method = $route['method'];
-
-        return $controller->$method($route['params']);
-    }
-}
+    'admin' => [
+        "login",
+        "kick",
+        "ban",
+        "rcon"
+    ]
+];

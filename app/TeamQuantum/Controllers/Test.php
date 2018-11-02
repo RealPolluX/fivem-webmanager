@@ -10,24 +10,25 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 00:42 PM
+ *                            Created @ 2018-11-02 - 18:23 PM
  */
 
-namespace TeamQuantum;
+namespace TeamQuantum\Controllers;
 
-class Page
+
+class Test extends Controller
 {
-    public function execute(string $uri): string
+    public function indexAction(array $params = [])
     {
-        $route = Router::resolve($uri);
-        if ($route === null) {
-            // TODO: 404
-            return '404';
-        }
-
-        $controller = new $route['controller'];
-        $method = $route['method'];
-
-        return $controller->$method($route['params']);
+        return 'hello';
     }
+
+    public function secondAction(array $params = [])
+    {
+        return $this->view('test',
+            $this->combineParamArrays(['name' => '.PolluX'], $params)
+        );
+    }
+
+
 }

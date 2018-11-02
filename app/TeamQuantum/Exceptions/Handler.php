@@ -58,7 +58,7 @@ class Handler
     /**
      * @param \Exception $exception
      */
-    public function handleException(\Exception $exception)
+    public function handleException($exception)
     {
         $this->exception = $exception;
         foreach ($this->exceptions as $e => $closure) {
