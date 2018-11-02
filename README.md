@@ -2,7 +2,7 @@
 This is the [webmanager](https://github.com/Slluxx/fivem-webmanager-v2) project by [Sluxx](https://github.com/Slluxx) but reworked.
 
 
-##Requirements
+## Requirements
 - PHP >= 7.0
 - RewriteEngine (mod_rewrite) on apache web server ([How to enable it](https://stackoverflow.com/a/5758551))
 - ...
