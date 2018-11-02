@@ -15,14 +15,17 @@
 
 namespace TeamQuantum;
 
+use TeamQuantum\Controllers\ErrorController;
+
 class Page
 {
     public function execute(string $uri): string
     {
         $route = Router::resolve($uri);
         if ($route === null) {
-            // TODO: 404
-            return '404';
+            $errorPage = new ErrorController();
+
+            return $errorPage->show($route['params'] === null ? [] : $route['params']);
         }
 
         $controller = new $route['controller'];

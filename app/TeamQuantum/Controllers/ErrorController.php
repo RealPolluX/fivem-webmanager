@@ -10,25 +10,28 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 18:23 PM
+ *                            Created @ 2018-11-03 - 00:21 PM
  */
 
 namespace TeamQuantum\Controllers;
 
-// TODO: remove test controller
-class TestController extends Controller
+
+class ErrorController extends Controller
 {
-    public function indexAction(array $params = [])
+    /**
+     * ErrorController constructor.
+     */
+    public function __construct()
     {
-        return 'hello';
+        return $this;
     }
 
-    public function secondAction(array $params = [])
-    {
-        return $this->view('test',
-            $this->combineParamArrays(['name' => '.PolluX'], $params)
+    public function show(array $params = []){
+        return $this->view('404',
+            $this->combineParamArrays([
+                'code' => 404,
+                'message' => 'The content you are looking for was not found on this page.'
+            ], $params)
         );
     }
-
-
 }

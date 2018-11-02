@@ -29,9 +29,7 @@ class Controller
     protected function view(string $view, array $params = []): string
     {
         $templateEngine = new Engine(__DIR__ . '/../../../resources/views', 'view.php');
-        $templateEngine->registerFunction('url', function () {
-            return $this->detectBaseUrl();
-        });
+        $this->registerGlobalFunctions($templateEngine);
 
         return $templateEngine->render($view, $params);
     }
@@ -41,6 +39,7 @@ class Controller
      *
      * @param array $customParams
      * @param array $uriParams
+     *
      * @return array
      */
     protected function combineParamArrays(array $customParams, array $uriParams = [])
@@ -67,6 +66,22 @@ class Controller
         $baseUrl .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 
         return $baseUrl;
+    }
+
+    /**
+     * Registers common function which can be used inside all templates.
+     *
+     * @param Engine $templateEngine
+     */
+    private function registerGlobalFunctions(Engine $templateEngine): void
+    {
+        $templateEngine->registerFunction('url', function () {
+            return $this->detectBaseUrl();
+        });
+
+        $templateEngine->registerFunction('year', function (){
+            return date('Y');
+        });
     }
 
 }
