@@ -24,9 +24,15 @@ class Router
      */
     public static function resolve(string $uri): ?Array
     {
-
         $var = parse_url($uri);
         $path = explode('/', trim($var['path'], "/"));
+
+        // TODO: redirect to login if there is no session
+        // TODO: ---> proper session handling
+        if (!array_key_exists('logged_in', ($_SESSION === null ? [] : $_SESSION))) {
+            $path[0] = 'account';
+            $path[1] = 'login';
+        }
 
         // MVC pattern: <controller> / <method>
         if (empty($path[0]) && count($path) === 1) {

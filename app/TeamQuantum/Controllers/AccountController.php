@@ -18,8 +18,14 @@ namespace TeamQuantum\Controllers;
 
 class AccountController extends Controller
 {
-    public function loginAction(array $params = [])
+    public function loginAction(array $params = []): string
     {
         return $this->view('login', $this->combineParamArrays([], $params));
+    }
+
+    public function logoutAction(array $params = []): string
+    {
+        // TODO: proper logout handling
+        return $this->view('logout', $this->combineParamArrays(['username' => 'TestName'], $params));
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title><?= $this->e($title) ?></title>
+    <title>WebManager - <?= $this->e($title) ?></title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,9 +44,31 @@
     </nav>
 </header>
 
+<div class="d-flex align-items-stretch">
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+            <!-- DYNAMIC CONTENT -->
+            <?= $this->section('content') ?>
+        </div>
 
-<?= $this->section('content') ?>
-
+        <!-- FOOTER -->
+        <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-left text-primary">
+                        <p class="mb-2 mb-md-0">FiveM Web-Manager &copy; <?= $this->year() ?></p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right text-gray-400">
+                        <p class="mb-0">
+                            Design by <a href="https://bootstrapious.com/admin-templates"
+                                         class="external text-gray-400">Bootstrapious</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
 
 <!-- JavaScript files-->
 <script src="<?= $this->url() ?>vendor/jquery/jquery.min.js"></script>

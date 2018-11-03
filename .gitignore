@@ -4,6 +4,7 @@ node_modules/
 storage/cache/*
 storage/logs/*
 storage/accounts/*
+storage/sessions/sess_*
 
 yarn.lock
 package-lock.json
