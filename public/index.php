@@ -17,12 +17,12 @@
 ini_set('display_errors', '1');
 error_reporting(E_ALL ^ E_NOTICE);
 
-// start sessions
-\TeamQueantum\Session::start('tq-webmanager-fivem', __DIR__ . '/../storage/sessions');
-
 // add auto loading
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../app/autoload.php';
+
+// start sessions
+\TeamQuantum\Session::start('tq-webmanager-fivem', __DIR__ . '/../storage/sessions');
 
 // add custom exception handling
 new \TeamQuantum\Exceptions\Handler();

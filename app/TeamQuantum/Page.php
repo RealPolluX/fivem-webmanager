@@ -10,12 +10,14 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 00:42 PM
+ *                            Created @ 2018-11-02 - 00:42
  */
 
 namespace TeamQuantum;
 
 use TeamQuantum\Controllers\ErrorController;
+use TeamQuantum\Http\Request;
+use TeamQuantum\Http\Response;
 
 class Page
 {
@@ -31,6 +33,13 @@ class Page
         $controller = new $route['controller'];
         $method = $route['method'];
 
-        return $controller->$method($route['params']);
+        $request = new Request($_SERVER, $route['params'], $_GET, $_POST);
+        $response = new Response();
+        $controller->$method($request, $response);
+
+        $dump = $response->dump();
+        header('X-PHP-Response-Code: ' . $dump['statusCode'], true, $dump['statusCode']);
+        header('Content-Type: ' . $dump['contentType']);
+        return $dump['response'];
     }
 }

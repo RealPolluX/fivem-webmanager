@@ -15,7 +15,6 @@
 
 namespace TeamQuantum;
 
-
 class Router
 {
     /**
@@ -27,8 +26,11 @@ class Router
         $var = parse_url($uri);
         $path = explode('/', trim($var['path'], "/"));
 
-        // TODO: redirect to login if there is no session
-        // TODO: ---> proper session handling
+        // redirect to login if user is not logged in (TODO: is there a better solution as doing this in the router?)
+        if (!Session::exists('logged_in')) {
+            $path[0] = 'account';
+            $path[1] = 'login';
+        }
 
         // MVC pattern: <controller> / <method>
         if (empty($path[0]) && count($path) === 1) {

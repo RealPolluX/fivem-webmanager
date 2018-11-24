@@ -22,12 +22,6 @@ class IndexController extends Controller
 {
     public function indexAction(Request $request, Response &$response)
     {
-        if (!Session::exists('logged_in')) {
-            $response->redirect('/account/login');
-         
-            return;
-        }
-
         $response->response($this->view(
             'home',
             $this->combineParamArrays([], $request->params())
