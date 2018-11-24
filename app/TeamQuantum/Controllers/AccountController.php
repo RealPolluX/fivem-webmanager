@@ -15,17 +15,19 @@
 
 namespace TeamQuantum\Controllers;
 
+use TeamQuantum\Http\Request;
+use TeamQuantum\Http\Response;
 
 class AccountController extends Controller
 {
-    public function loginAction(array $params = []): string
+    public function loginAction(Request $request, Response &$response)
     {
-        return $this->view('login', $this->combineParamArrays([], $params));
+        $response->response($this->view('login', $this->combineParamArrays([], $request->params())));
     }
 
-    public function logoutAction(array $params = []): string
+    public function logoutAction(Request $request, Response &$response)
     {
         // TODO: proper logout handling
-        return $this->view('logout', $this->combineParamArrays(['username' => 'TestName'], $params));
+        $response->response($this->view('logout', $this->combineParamArrays(['username' => 'TestName'], $request->params())));
     }
 }

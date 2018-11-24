@@ -15,13 +15,22 @@
 
 namespace TeamQuantum\Controllers;
 
+use TeamQuantum\Http\Request;
+use TeamQuantum\Http\Response;
 
 class IndexController extends Controller
 {
-    public function indexAction(array $params = [])
+    public function indexAction(Request $request, Response &$response)
     {
-        return $this->view('home',
-            $this->combineParamArrays([], $params)
-        );
+        if (!Session::exists('logged_in')) {
+            $response->redirect('/account/login');
+         
+            return;
+        }
+
+        $response->response($this->view(
+            'home',
+            $this->combineParamArrays([], $request->params())
+        ));
     }
 }

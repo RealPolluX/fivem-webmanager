@@ -45,6 +45,13 @@
 </header>
 
 <div class="d-flex align-items-stretch">
+    <!-- SIDEBAR -->
+    <?php
+    if ($this->e($logged_in)) {
+        echo '<div id="sidebar" class="sidebar py-3">' . $this->fetch('sidebar') . '</div>';
+    }
+    ?>
+
     <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
             <!-- DYNAMIC CONTENT -->
@@ -62,6 +69,10 @@
                         <p class="mb-0">
                             Design by <a href="https://bootstrapious.com/admin-templates"
                                          class="external text-gray-400">Bootstrapious</a>
+                        </p>
+                        <p class="mb-0">
+                            Code by <a href="https://github.com/RealPolluX"
+                                       class="external text-gray-400">RealPolluX</a>
                         </p>
                     </div>
                 </div>

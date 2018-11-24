@@ -18,10 +18,7 @@ ini_set('display_errors', '1');
 error_reporting(E_ALL ^ E_NOTICE);
 
 // start sessions
-session_save_path(__DIR__ . '/../storage/sessions');
-ini_set('session.gc_probability', 1); // debian bugfix
-session_name('tq-webmanager-fivem');
-session_start();
+\TeamQueantum\Session::start('tq-webmanager-fivem', __DIR__ . '/../storage/sessions');
 
 // add auto loading
 require __DIR__ . '/../vendor/autoload.php';

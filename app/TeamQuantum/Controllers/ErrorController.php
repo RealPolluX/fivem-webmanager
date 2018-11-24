@@ -15,16 +15,19 @@
 
 namespace TeamQuantum\Controllers;
 
+use TeamQuantum\Http\Request;
+use TeamQuantum\Http\Response;
 
 class ErrorController extends Controller
 {
-    public function show(array $params = [])
+    public function show(Request $request, Response &$response)
     {
-        return $this->view('404',
+        $response->response($this->view(
+            '404',
             $this->combineParamArrays([
                 'code' => 404,
                 'message' => 'The content you are looking for was not found on this page.'
-            ], $params)
-        );
+            ], $request->params())
+        ));
     }
 }
