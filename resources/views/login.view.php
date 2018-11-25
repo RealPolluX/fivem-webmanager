@@ -1,10 +1,26 @@
 <?php $this->layout('template', ['title' => 'Login']) ?>
 
+<!-- ERRORS -->
+<?php
+
+if (array_key_exists('notifications', $this->data)) {
+    if (sizeof($this->data['notifications']) > 0) {
+        // we have notifications to show!
+        echo '<br>';
+        foreach ($this->data['notifications'] as $element) {
+            echo '<div class="notification-' . $element['type'] . '">' . $element['message'] . '</div>';
+        }
+    }
+}
+
+?>
+
 <div class="page-holder d-flex align-items-center">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-5 col-lg-7 mx-auto mb-5 mb-lg-0">
-                <div class="pr-lg-5"><img src="<?= $this->url() ?>img/illustration.svg" alt="" class="img-fluid"></div>
+                <div class="pr-lg-5"><img src="<?= $this->url() ?>img/illustration.svg" alt="Illustration"
+                                          class="img-fluid"></div>
             </div>
             <div class="col-lg-5 px-lg-4">
                 <h1 class="text-base text-primary text-uppercase mb-4">FiveM Web-Manager</h1>

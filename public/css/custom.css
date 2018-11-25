@@ -1,1 +1,45 @@
 /* your styles go here */
+
+.notification-info,
+.notification-success,
+.notification-warning,
+.notification-error
+{
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    -moz-border-radius: 3px;
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    padding: 10px 5px 10px 40px;
+    text-shadow: #fff 1px 1px 1px;
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.notification-info
+{
+    background-color: #bde5f8;
+    background-image: url('../img/ico/info.png');
+    color: #004079;
+}
+.notification-success
+{
+    background-color: #dff2bf;
+    background-image: url('../img/ico/accept.png');
+    color: #3f7a00;
+}
+.notification-warning
+{
+    background-color: #feefb3;
+    background-image: url('../img/ico/error.png');
+    color: #804d00;
+
+}
+.notification-error
+{
+    background-color: #ffbaba;
+    background-image: url('../img/ico/cancel.png');
+    color: #870008;
+}

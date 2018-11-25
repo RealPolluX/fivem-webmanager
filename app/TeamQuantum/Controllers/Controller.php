@@ -16,6 +16,7 @@
 namespace TeamQuantum\Controllers;
 
 use League\Plates\Engine;
+use TeamQuantum\Session;
 
 class Controller
 {
@@ -81,6 +82,11 @@ class Controller
 
         $templateEngine->registerFunction('year', function () {
             return date('Y');
+        });
+
+        // expose the session to our templates
+        $templateEngine->registerFunction('session', function ($key) {
+            return Session::get($key);
         });
     }
 

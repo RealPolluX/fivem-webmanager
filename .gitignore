@@ -2,8 +2,9 @@
 node_modules/
 
 storage/cache/*
-storage/logs/*
-storage/accounts/*
+storage/logs/*.log
+storage/logs/*.txt
+storage/accounts/*.json
 storage/sessions/sess_*
 
 yarn.lock

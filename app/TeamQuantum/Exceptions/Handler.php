@@ -10,7 +10,7 @@
  *              \/     \/      \/        \__>          \/     \/                 \/
  *                          https://github.com/Team-Quantum
  *                      .PolluX / https://github.com/RealPolluX
- *                            Created @ 2018-11-02 - 02:26 PM
+ *                            Created @ 2018-11-02 - 02:26
  */
 
 namespace TeamQuantum\Exceptions;

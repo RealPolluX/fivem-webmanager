@@ -47,7 +47,7 @@
 <div class="d-flex align-items-stretch">
     <!-- SIDEBAR -->
     <?php
-    if ($this->e($logged_in)) {
+    if ($this->session('logged_in')) {
         echo '<div id="sidebar" class="sidebar py-3">' . $this->fetch('sidebar') . '</div>';
     }
     ?>
