@@ -3,7 +3,7 @@ This is the [webmanager](https://github.com/Slluxx/fivem-webmanager-v2) project 
 
 
 ## Requirements
-- PHP >= 7.0
+- PHP >= 7.1
 - NodeJS (if you want to develop/modify the css)
 
 

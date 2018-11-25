@@ -10,7 +10,7 @@
                 <h1 class="text-base text-primary text-uppercase mb-4">FiveM Web-Manager</h1>
                 <h2 class="mb-4">Welcome back!</h2>
                 <p class="text-muted">If you have a user account you can log-in now!</p>
-                <form id="loginForm" action="index.html" class="mt-4">
+                <form id="loginForm" action="<?= $this->url() ?>account/login" class="mt-4" method="post">
                     <div class="form-group mb-4">
                         <input type="text" name="username" placeholder="Username or Email address"
                                class="form-control border-0 shadow form-control-lg">
@@ -19,7 +19,7 @@
                         <input type="password" name="password" placeholder="Password"
                                class="form-control border-0 shadow form-control-lg text-violet">
                     </div>
-                    <button type="submit" class="btn btn-primary shadow px-5">Log in</button>
+                    <button type="submit" class="btn btn-primary shadow px-5" name="auth" value="login">Log in</button>
                 </form>
             </div>
         </div>

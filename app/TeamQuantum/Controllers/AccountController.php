@@ -15,13 +15,46 @@
 
 namespace TeamQuantum\Controllers;
 
+use TeamQuantum\Exceptions\DeserializationException;
+use TeamQuantum\Helpers\Json;
 use TeamQuantum\Http\Request;
 use TeamQuantum\Http\Response;
+use TeamQuantum\Session;
 
 class AccountController extends Controller
 {
     public function loginAction(Request $request, Response &$response)
     {
+        if ($request->method() === 'POST' && $request->body('auth') === 'login') {
+            // try to login
+            $userName = $request->body('username');
+            $password = $request->body('password');
+
+            $user = null;
+            try {
+                $user = Json::load($userName);
+            } catch (DeserializationException $e){
+                if ($user !== null) {
+                    // user found, check login data
+                    // TODO: password hashing
+                    if (($user['username'] === $userName || $user['email'] === $userName) && $user['password'] === $password) {
+                        // log in
+                        Session::set('username', $user['username']);
+                        Session::set('email', $user['email']);
+                        Session::set('rank', $user['rank']);
+                        Session::set('logged_in', true);
+                    } else {
+                        // wrong credentials
+                    }
+
+                } else {
+                    // there is no user with this name
+                    // TODO: proper way to handle and display errors
+                }
+            }
+        }
+
+        // show login
         $response->response($this->view('login', $this->combineParamArrays([], $request->params())));
     }
 

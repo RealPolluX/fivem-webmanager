@@ -15,6 +15,8 @@
 
 namespace TeamQuantum\Helpers;
 
+use TeamQuantum\Exceptions\DeserializationException;
+
 
 class Json
 {
@@ -22,13 +24,18 @@ class Json
      * Loads specific account data
      *
      * @param string $account
+     *
      * @return \stdClass
+     * @throws DeserializationException
      */
     public static function load(string $account): \stdClass
     {
         $path = __DIR__ . '/../../../storage/accounts';
 
         $fileContent = file_get_contents($path . '/' . $account . '.json', LOCK_EX);
+        if (!$fileContent) {
+            return null;
+        }
 
         return Json::deserialize($fileContent);
     }
@@ -53,13 +60,13 @@ class Json
      * @param bool $forceArray
      *
      * @return \stdClass|array
-     * @throws TeamQuantum\Exceptions\DeserializationException
+     * @throws DeserializationException
      */
     public static function deserialize(string $data, bool $forceArray = false)/*: stdClass|array*/
     {
         $parsed = json_decode($data, $forceArray);
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new Exceptions\DeserializationException('Failed to deserialize data: ' . json_last_error());
+            throw new DeserializationException('Failed to deserialize data: ' . json_last_error());
         }
 
         return $parsed;
