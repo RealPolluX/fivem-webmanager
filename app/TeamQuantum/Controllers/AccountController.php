@@ -30,10 +30,9 @@ class AccountController extends Controller
             $userName = $request->body('username');
             $password = $request->body('password');
 
-            $user = null;
             try {
                 $user = Json::load($userName);
-            } catch (DeserializationException $e){
+
                 if ($user !== null) {
                     // user found, check login data
                     // TODO: password hashing
@@ -43,6 +42,8 @@ class AccountController extends Controller
                         Session::set('email', $user['email']);
                         Session::set('rank', $user['rank']);
                         Session::set('logged_in', true);
+
+                        header("refresh:5;url=/");
                     } else {
                         // wrong credentials
                     }
@@ -51,6 +52,8 @@ class AccountController extends Controller
                     // there is no user with this name
                     // TODO: proper way to handle and display errors
                 }
+            } catch (DeserializationException $e) {
+
             }
         }
 
@@ -60,7 +63,8 @@ class AccountController extends Controller
 
     public function logoutAction(Request $request, Response &$response)
     {
-        // TODO: proper logout handling
-        $response->response($this->view('logout', $this->combineParamArrays(['username' => 'TestName'], $request->params())));
+        Session::destroy();
+        header("refresh:5;url=/account/login");
+        $response->response($this->view('logout', $this->combineParamArrays([], $request->params())));
     }
 }

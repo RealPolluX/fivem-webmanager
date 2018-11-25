@@ -25,10 +25,10 @@ class Json
      *
      * @param string $account
      *
-     * @return \stdClass
+     * @return array
      * @throws DeserializationException
      */
-    public static function load(string $account): \stdClass
+    public static function load(string $account)
     {
         $path = __DIR__ . '/../../../storage/accounts';
 
@@ -37,7 +37,7 @@ class Json
             return null;
         }
 
-        return Json::deserialize($fileContent);
+        return Json::deserialize($fileContent, true);
     }
 
     /**
@@ -59,10 +59,10 @@ class Json
      * @param string $data
      * @param bool $forceArray
      *
-     * @return \stdClass|array
+     * @return array
      * @throws DeserializationException
      */
-    public static function deserialize(string $data, bool $forceArray = false)/*: stdClass|array*/
+    public static function deserialize(string $data, bool $forceArray = false): array
     {
         $parsed = json_decode($data, $forceArray);
         if (JSON_ERROR_NONE !== json_last_error()) {
