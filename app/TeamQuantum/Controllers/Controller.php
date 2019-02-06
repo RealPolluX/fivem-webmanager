@@ -43,7 +43,7 @@ class Controller
      *
      * @return array
      */
-    protected function combineParamArrays(array $customParams, array $uriParams = [])
+    protected function combineParamArrays(array $customParams, array $uriParams = []): array
     {
         return array_merge($customParams, $uriParams);
     }
@@ -53,7 +53,7 @@ class Controller
      *
      * @return mixed
      */
-    public function detectBaseUrl()
+    public function detectBaseUrl(): string
     {
         if (isset($_SERVER['REQUEST_SCHEME'])) { // localhost bugfix
             $baseUrl = $_SERVER['REQUEST_SCHEME'];
