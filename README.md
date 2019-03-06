@@ -1,5 +1,5 @@
 # FiveM WebManager
-This is the [webmanager](https://github.com/Slluxx/fivem-webmanager-v2) project by [Slluxx](https://github.com/Slluxx) but reworked.
+DISCONTINUED! This is the [webmanager](https://github.com/Slluxx/fivem-webmanager-v2) project by [Slluxx](https://github.com/Slluxx) but reworked.
 
 
 ## Requirements
